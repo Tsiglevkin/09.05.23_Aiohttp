@@ -1,5 +1,5 @@
 from aiohttp import web
-from models import orm_context, session_middleware
+from function import orm_context, session_middleware
 
 app = web.Application()  # создаем экземпляр aiohttp приложения.
 
@@ -10,5 +10,5 @@ app.cleanup_ctx.append(orm_context)  # регистрируем контекст
 # добавим ее в список middleware нашего приложения.
 app.middlewares.append(session_middleware)
 
-
+# запускаем приложение.
 web.run_app(app)
