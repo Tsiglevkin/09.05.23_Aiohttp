@@ -47,4 +47,4 @@ class Advertisement(Base):
     created_at = sq.Column(sq.DateTime, server_default=sq.func.now())
     owner_id = sq.Column(sq.Integer, sq.ForeignKey('owners.id'), nullable=False)
 
-    owner = relationship('User', backref='advertisements')
+    owner = relationship(User, cascade='all, delete', backref='advertisements')  # добавлено каскадное удаление.

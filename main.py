@@ -18,6 +18,11 @@ app.add_routes(
         web.get('/users/{user_id:\d+}', UserView),
         web.patch('/users/{user_id:\d+}', UserView),
         web.delete('/users/{user_id:\d+}', UserView),
+
+        web.post('/advertisements/', AdvertisementView),
+        web.get('/advertisements/{advertisement_id:\d+}', AdvertisementView),
+        web.patch('/advertisements/{advertisement_id:\d+}', AdvertisementView),
+        web.delete('/advertisements/{advertisement_id:\d+}', AdvertisementView),
     ]
 )
 

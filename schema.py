@@ -22,7 +22,7 @@ class CreateUser(BaseModel):
             Проверенное значение
         """
 
-        if value > 100:
+        if len(value) > 100:
             raise ValueError('Name is too big. You have 100 symbols.')
         return value
 
@@ -59,7 +59,7 @@ class UpdateUser(BaseModel):
             Проверенное значение
         """
 
-        if value > 100:
+        if len(value) > 100:
             raise ValueError('Name is too big. You have 100 symbols.')
         return value
 
@@ -102,9 +102,10 @@ def validate(
     try:
         model_item = model_class(**json_data)
         return model_item.dict(exclude_none=True)
+
     except ValidationError as error:
         raise web.HTTPBadRequest(
-            text=json.dumps({'error': 'some data are not validate'}),
+            text=json.dumps({'error': error.errors()}),
             content_type='application/json'
         )
 
